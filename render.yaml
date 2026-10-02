@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ps-remote
+    runtime: node
+    plan: starter          # free tier sleeps after 15min — WS will drop!
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 18.18.0
+      - key: AUTH_TOKEN
+        generateValue: true   # Render auto-generates a secure token
+      - key: SESSION_SECRET
+        generateValue: true
